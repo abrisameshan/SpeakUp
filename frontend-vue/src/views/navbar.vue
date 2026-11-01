@@ -213,12 +213,11 @@ const handleLogout = () => {
 <style scoped>
 /* 1. WRAPPER MELAYANG */
 .navbar-wrapper {
-  position: sticky;
-  top: 14px;
+  position: relative;
+  margin: 16px auto 0;
   z-index: 1000;
   width: 100%;
   max-width: 1080px;
-  margin: 0 auto;
   padding: 0 16px;
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;

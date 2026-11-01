@@ -62,4 +62,51 @@ class AspirationController extends Controller
             'upvotes_count' => $aspiration->upvotes_count
         ]);
     }
+
+    // Update status aspirasi dan tanggapan dari guru/admin
+    public function updateStatus(Request $request, $id)
+    {
+        $user = $request->user();
+
+        // Verifikasi role (Hanya admin atau guru yang diizinkan)
+        if (!in_array($user->role, ['admin', 'guru'])) {
+            return response()->json([
+                'message' => 'Akses ditolak. Hanya guru dan admin yang dapat mengelola aspirasi.'
+            ], 403);
+        }
+
+        $validated = $request->validate([
+            'status' => 'required|in:pending,diproses,selesai',
+            'feedback' => 'nullable|string'
+        ]);
+
+        $aspiration = Aspiration::findOrFail($id);
+        $aspiration->update($validated);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Status aspirasi berhasil diperbarui.',
+            'data' => $aspiration
+        ]);
+    }
+
+    // Hapus aspirasi (khusus admin/guru jika ada postingan spam)
+    public function destroy(Request $request, $id)
+    {
+        $user = $request->user();
+
+        if (!in_array($user->role, ['admin', 'guru'])) {
+            return response()->json([
+                'message' => 'Akses ditolak.'
+            ], 403);
+        }
+
+        $aspiration = Aspiration::findOrFail($id);
+        $aspiration->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Aspirasi berhasil dihapus.'
+        ]);
+    }
 }

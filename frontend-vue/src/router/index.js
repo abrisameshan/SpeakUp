@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/home.vue'
 import Login from '../views/Login.vue'
-import Register from '../views/Register.vue' // 1. Import komponen Register
+import Register from '../views/Register.vue'
+import AdminDashboard from '../views/AdminDashboard.vue'
 
 const routes = [
   {
@@ -13,19 +14,47 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login,
-    meta: {hideNavbar: true}
+    meta: { hideNavbar: true }
   },
   {
-    path: '/register', // 2. Tambahkan rute register
+    path: '/register',
     name: 'Register',
     component: Register,
-    meta: {hideNavbar: true}
+    meta: { hideNavbar: true }
+  },
+  {
+    path: '/admin',
+    name: 'AdminDashboard',
+    component: AdminDashboard,
+    meta: { requiresAdmin: true } // Tandai rute ini hanya untuk pengelola
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+
+// Navigation Guard
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('token')
+  const role = localStorage.getItem('role')
+
+  if (to.meta.requiresAdmin) {
+    // 1. Cek apakah pengguna sudah login
+    if (!token) {
+      alert('Silakan login terlebih dahulu.')
+      return next('/login')
+    }
+
+    // 2. Cek apakah rolenya adalah admin atau guru
+    if (role !== 'admin' && role !== 'guru') {
+      alert('Akses ditolak. Anda tidak memiliki izin untuk mengakses halaman ini.')
+      return next('/') // Alihkan kembali ke beranda
+    }
+  }
+
+  next()
 })
 
 export default router

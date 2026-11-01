@@ -134,7 +134,9 @@ const handleLogin = async () => {
     }
 
     // 1. Simpan token ke localStorage
+    // Setelah response login berhasil didapat dari backend
     localStorage.setItem('token', data.token)
+    localStorage.setItem('role', data.user.role) // Simpan role ('siswa', 'guru', atau 'admin')
 
     // 2. Arahkan langsung ke homepage
     router.push('/')

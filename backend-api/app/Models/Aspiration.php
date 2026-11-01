@@ -15,6 +15,8 @@ class Aspiration extends Model
         'category',
         'description',
         'status',
+        'upvotes_count',
+        'feedback',
         'upvotes_count'
     ];
 

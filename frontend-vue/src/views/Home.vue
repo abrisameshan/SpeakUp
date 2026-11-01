@@ -165,7 +165,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, onUnmounted } from 'vue'
 
 const categories = ['Semua', 'Sarana', 'Akademik', 'Kebersihan', 'Layanan', 'Umum']
 const selectedCategory = ref('Semua')
@@ -280,8 +280,19 @@ const formatDate = (dateStr) => {
   return date.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
+const handleVisibilityChange = () => {
+  if (document.visibilityState === 'visible') {
+    fetchAspirations()
+  }
+}
+
 onMounted(() => {
   fetchAspirations()
+  document.addEventListener('visibilitychange', handleVisibilityChange)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('visibilitychange', handleVisibilityChange)
 })
 </script>
 
