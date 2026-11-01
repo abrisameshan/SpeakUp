@@ -109,4 +109,19 @@ class AspirationController extends Controller
             'message' => 'Aspirasi berhasil dihapus.'
         ]);
     }
+
+    // Ambil riwayat aspirasi milik user yang sedang login
+    public function myAspirations(Request $request)
+    {
+        $user = $request->user();
+
+        $aspirations = Aspiration::where('user_id', $user->id)
+            ->latest()
+            ->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $aspirations
+        ]);
+    }
 }

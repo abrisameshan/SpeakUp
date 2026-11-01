@@ -3,6 +3,7 @@ import Home from '../views/home.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import AdminDashboard from '../views/AdminDashboard.vue'
+import MyAspirations from '../views/MyAspirations.vue'
 
 const routes = [
   {
@@ -26,8 +27,13 @@ const routes = [
     path: '/admin',
     name: 'AdminDashboard',
     component: AdminDashboard,
-    meta: { requiresAdmin: true } // Tandai rute ini hanya untuk pengelola
-  }
+    meta: { requiresAdmin: true }
+  },
+  {
+  path: '/aspirasi',
+  name: 'MyAspirations',
+  component: MyAspirations
+}
 ]
 
 const router = createRouter({

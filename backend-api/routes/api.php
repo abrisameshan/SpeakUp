@@ -21,7 +21,16 @@ Route::get('/aspirations', [AspirationController::class, 'index']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/aspirations', [AspirationController::class, 'store']);
     Route::post('/aspirations/{id}/upvote', [AspirationController::class, 'upvote']);
-    
-Route::put('/aspirations/{id}/status', [AspirationController::class, 'updateStatus']);
+
+    Route::put('/aspirations/{id}/status', [AspirationController::class, 'updateStatus']);
     Route::delete('/aspirations/{id}', [AspirationController::class, 'destroy']);
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/user/aspirations', [AspirationController::class, 'myAspirations']);
+
+        Route::post('/aspirations', [AspirationController::class, 'store']);
+        Route::post('/aspirations/{id}/upvote', [AspirationController::class, 'upvote']);
+        Route::put('/aspirations/{id}/status', [AspirationController::class, 'updateStatus']);
+        Route::delete('/aspirations/{id}', [AspirationController::class, 'destroy']);
+    });
 });
