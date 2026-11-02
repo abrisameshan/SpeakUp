@@ -4,6 +4,8 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import AdminDashboard from '../views/AdminDashboard.vue'
 import MyAspirations from '../views/MyAspirations.vue'
+import about from '../views/about.vue'
+import Explore from '../views/explore.vue'
 
 const routes = [
   {
@@ -30,9 +32,19 @@ const routes = [
     meta: { requiresAdmin: true }
   },
   {
-  path: '/aspirasi',
+  path: '/riwayat',
   name: 'MyAspirations',
   component: MyAspirations
+},
+{
+  path: '/about',
+  name: 'About',
+  component: about
+},
+{
+  path: '/explore',
+  name: 'Explore',
+  component: Explore
 }
 ]
 
