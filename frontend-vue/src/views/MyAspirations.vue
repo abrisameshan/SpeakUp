@@ -19,7 +19,7 @@
 
       <!-- Empty State -->
       <div v-else-if="aspirations.length === 0" class="state-box">
-        <div class="empty-icon">📭</div>
+        <div class="empty-icon"></div>
         <h3>Belum Ada Aspirasi</h3>
         <p>Anda belum pernah mengirimkan laporan atau aspirasi apa pun.</p>
         <router-link to="/" class="btn-create">Tulis Aspirasi Baru</router-link>
@@ -59,7 +59,7 @@
 
           <!-- Pending notice jika belum ada feedback -->
           <div v-else class="waiting-box">
-            <span>⏳ Menunggu tindak lanjut dan respon dari pihak sekolah.</span>
+            <span>Menunggu tindak lanjut dan respon dari pihak sekolah.</span>
           </div>
 
           <!-- Footer Kartu -->

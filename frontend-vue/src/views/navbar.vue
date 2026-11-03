@@ -12,11 +12,9 @@
       <div class="nav-glare"></div>
 
       <!-- 1. Brand / Logo Kiri -->
-      <router-link to="/" class="brand" @click="mobileMenuOpen = false">
-        <div class="brand-droplet">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
-          </svg>
+     <router-link to="/" class="brand" @click="mobileMenuOpen = false">
+        <div class="brand-logo-wrapper">
+          <img src="/logo.png" alt="SpeakUp Logo" class="brand-img" />
         </div>
         <span class="brand-name">SpeakUp</span>
       </router-link>
@@ -161,6 +159,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import logoSpeakUp from '../assets/logo.png'
 
 const router = useRouter()
 const route = useRoute()
@@ -311,6 +310,28 @@ const handleLogout = () => {
   font-weight: 700;
   letter-spacing: -0.02em;
   color: #0f172a;
+}
+
+.brand-logo-wrapper {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
+}
+
+.brand-name {
+  font-size: 17px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
 }
 
 /* 4. NAVIGASI TENGAH (DESKTOP/TABLET) */

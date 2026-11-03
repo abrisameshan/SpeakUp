@@ -16,7 +16,7 @@
       <!-- Grid Fitur / Nilai Utama -->
       <section class="values-grid">
         <div class="glass-card value-item">
-          <div class="card-icon">🎯</div>
+          <div class="card-icon"></div>
           <h3>Tujuan Kami</h3>
           <p>
             Memberikan ruang aman bagi seluruh civitas sekolah untuk menyuarakan saran, keluhan sarana, maupun ide perbaikan sistem akademik tanpa hambatan birokrasi.
@@ -24,7 +24,7 @@
         </div>
 
         <div class="glass-card value-item">
-          <div class="card-icon">🔍</div>
+          <div class="card-icon"></div>
           <h3>Prinsip Transparansi</h3>
           <p>
             Setiap aspirasi yang diajukan dapat dipantau statusnya secara terbuka mulai dari verifikasi pengelola, tahap tindak lanjut, hingga selesai ditangani.
@@ -32,7 +32,7 @@
         </div>
 
         <div class="glass-card value-item">
-          <div class="card-icon">🤝</div>
+          <div class="card-icon"></div>
           <h3>Dukungan Komunitas</h3>
           <p>
             Fitur voting memungkinkan aspirasi penting yang berdampak pada kepentingan bersama mendapatkan atensi dan prioritas penanganan lebih cepat dari pihak sekolah.
@@ -96,7 +96,6 @@
 
       <section class="glass-card contact-section">
         <div class="contact-header">
-          <div class="contact-icon-badge">💬</div>
           <div>
             <h2 class="section-title">Pusat Bantuan & Kontak Admin</h2>
             <p class="section-subtitle">Punya pertanyaan seputar akun atau kendala teknis mendesak? Hubungi kami langsung.</p>

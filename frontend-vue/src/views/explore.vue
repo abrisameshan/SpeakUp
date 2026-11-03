@@ -51,8 +51,8 @@
             </select>
 
             <select v-model="sortBy" class="glass-select">
-              <option value="popular">🔥 Terpopuler</option>
-              <option value="newest">🕒 Terbaru</option>
+              <option value="popular">Terpopuler</option>
+              <option value="newest">Terbaru</option>
             </select>
           </div>
         </div>
@@ -62,7 +62,7 @@
       <section v-if="topTrending && !searchQuery && selectedCategory === 'Semua'" class="spotlight-section">
         <div class="spotlight-card">
           <div class="spotlight-badge">
-            <span>🔥 Aspirasi Terhangat Minggu Ini</span>
+            <span>Aspirasi Terhangat Minggu Ini</span>
           </div>
           <div class="spotlight-body">
             <div class="spotlight-content">
