@@ -18,7 +18,7 @@
 </template>
 <script setup>
 import { useRoute } from 'vue-router'
-import Navbar from './views/Navbar.vue'
+import Navbar from './views/navbar.vue'
 
 const route = useRoute()
 </script>
