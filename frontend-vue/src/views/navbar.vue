@@ -14,7 +14,7 @@
       <!-- 1. Brand / Logo Kiri -->
      <router-link to="/" class="brand" @click="mobileMenuOpen = false">
         <div class="brand-logo-wrapper">
-          <img src="/logo.png" alt="SpeakUp Logo" class="brand-img" />
+          <img src="../assets/logo.png" alt="SpeakUp Logo" class="brand-img" />
         </div>
         <span class="brand-name">SpeakUp</span>
       </router-link>

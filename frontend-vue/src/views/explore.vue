@@ -154,6 +154,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { API_BASE_URL } from '../config'
 
 const aspirations = ref([])
 const loading = ref(true)
@@ -173,7 +174,7 @@ const categories = [
 
 const fetchAspirations = async () => {
   try {
-    const res = await fetch('http://127.0.0.1:8000/api/aspirations?category=Semua')
+    const res = await fetch(`${API_BASE_URL}/api/aspirations?category=Semua`)
     const json = await res.json()
     if (json.status === 'success') {
       aspirations.value = json.data.data.map(item => ({
@@ -230,7 +231,7 @@ const handleUpvote = async (item) => {
   }
 
   try {
-    const res = await fetch(`http://127.0.0.1:8000/api/aspirations/${item.id}/upvote`, {
+    const res = await fetch(`${API_BASE_URL}/api/aspirations/${item.id}/upvote`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,

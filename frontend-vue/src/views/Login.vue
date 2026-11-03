@@ -101,6 +101,7 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { API_BASE_URL } from '../config'
 
 const router = useRouter()
 
@@ -118,7 +119,7 @@ const handleLogin = async () => {
   errorMessage.value = ''
 
   try {
-    const response = await fetch('http://127.0.0.1:8000/api/login', {
+    const response = await fetch(`${API_BASE_URL}/api/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

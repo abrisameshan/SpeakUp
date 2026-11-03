@@ -166,6 +166,7 @@
 
 <script setup>
 import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import { API_BASE_URL } from '../config'
 
 const categories = ['Semua', 'Sarana', 'Akademik', 'Kebersihan', 'Layanan', 'Umum']
 const selectedCategory = ref('Semua')
@@ -186,7 +187,7 @@ const form = reactive({
 const fetchAspirations = async () => {
   loadingFeed.value = true
   try {
-    const url = `http://127.0.0.1:8000/api/aspirations?category=${selectedCategory.value}`
+    const url = `${API_BASE_URL}/api/aspirations?category=${selectedCategory.value}`
     const res = await fetch(url)
     const json = await res.json()
 
@@ -221,7 +222,7 @@ const submitAspiration = async () => {
   isPostError.value = false
 
   try {
-    const res = await fetch('http://127.0.0.1:8000/api/aspirations', {
+    const res = await fetch(`${API_BASE_URL}/api/aspirations`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -257,7 +258,7 @@ const upvote = async (item) => {
   }
 
   try {
-    const res = await fetch(`http://127.0.0.1:8000/api/aspirations/${item.id}/upvote`, {
+    const res = await fetch(`${API_BASE_URL}/api/aspirations/${item.id}/upvote`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

@@ -116,6 +116,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { API_BASE_URL } from '../config'
 
 const aspirations = ref([])
 const loading = ref(true)
@@ -131,7 +132,7 @@ const statusOptions = [
 const fetchAspirations = async () => {
   loading.value = true
   try {
-    const res = await fetch('http://127.0.0.1:8000/api/aspirations?category=Semua')
+    const res = await fetch(`${API_BASE_URL}/api/aspirations?category=Semua`)
     const json = await res.json()
     if (json.status === 'success') {
       aspirations.value = json.data.data
@@ -151,7 +152,7 @@ const filteredAspirations = computed(() => {
 const quickUpdateStatus = async (item) => {
   const token = localStorage.getItem('token')
   try {
-    await fetch(`http://127.0.0.1:8000/api/aspirations/${item.id}/status`, {
+    await fetch(`${API_BASE_URL}/api/aspirations/${item.id}/status`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -178,7 +179,7 @@ const deleteAspiration = async (id) => {
 
   const token = localStorage.getItem('token')
   try {
-    const res = await fetch(`http://127.0.0.1:8000/api/aspirations/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/aspirations/${id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`,
