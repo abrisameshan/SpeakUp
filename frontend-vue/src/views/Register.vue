@@ -61,7 +61,7 @@
                 id="email"
                 type="email" 
                 v-model="form.email" 
-                placeholder="contoh@mail.com" 
+                placeholder="contoh@email.com" 
                 autocomplete="email"
                 required 
               />
