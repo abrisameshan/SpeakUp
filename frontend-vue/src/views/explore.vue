@@ -33,11 +33,11 @@
           <div class="category-pills">
             <button 
               v-for="cat in categories" 
-              :key="cat"
-              :class="['pill-btn', { active: selectedCategory === cat }]"
-              @click="selectedCategory = cat"
+              :key="cat.value"
+              :class="['pill-btn', { active: selectedCategory === cat.value }]"
+              @click="selectedCategory = cat.value"
             >
-              {{ cat }}
+              {{ cat.label }}
             </button>
           </div>
 
@@ -93,7 +93,7 @@
           class="liquid-explore-card"
         >
           <div class="card-top">
-            <span class="category-tag">{{ item.category }}</span>
+            <span class="category-tag">{{ formatCategory(item.category) }}</span>
             <div :class="['status-chip', item.status]">
               <span class="dot"></span>
               <span>{{ formatStatus(item.status) }}</span>
@@ -165,12 +165,12 @@ const selectedStatus = ref('Semua')
 const sortBy = ref('popular')
 
 const categories = [
-  'Semua', 
-  'Sarana & Prasarana', 
-  'Akademik', 
-  'Kebersihan', 
-  'Layanan & Fasilitas', 
-  'Umum'
+  { label: 'Semua', value: 'Semua' },
+  { label: 'Sarana & Prasarana', value: 'Sarana' },
+  { label: 'Akademik', value: 'Akademik' },
+  { label: 'Kebersihan', value: 'Kebersihan' },
+  { label: 'Layanan & Fasilitas', value: 'Layanan' },
+  { label: 'Umum', value: 'Umum' }
 ]
 
 const fetchAspirations = async () => {
@@ -276,6 +276,11 @@ const formatStatus = (st) => {
   if (st === 'diproses') return 'Diproses'
   if (st === 'selesai') return 'Selesai'
   return st
+}
+
+const formatCategory = (cat) => {
+  const found = categories.find(c => c.value === cat)
+  return found ? found.label : cat
 }
 
 const formatDate = (dateStr) => {
