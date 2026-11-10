@@ -221,12 +221,13 @@ const handleLogout = () => {
 <style scoped>
 /* 1. WRAPPER MELAYANG */
 .navbar-wrapper {
-  position: relative;
-  margin: 16px auto 0;
+  position: sticky;
+  top: 0;
+  margin: 0 auto;
   z-index: 1000;
   width: 100%;
   max-width: 1080px;
-  padding: 0 16px;
+  padding: 16px 16px 0;
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
 }
@@ -638,8 +639,7 @@ const handleLogout = () => {
 /* Mobile (<= 680px): Beralih ke Hamburger Menu */
 @media (max-width: 680px) {
   .navbar-wrapper {
-    top: 10px;
-    padding: 0 12px;
+    padding: 10px 12px 0;
   }
 
   .liquid-navbar {
