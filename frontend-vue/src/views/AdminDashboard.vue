@@ -1,12 +1,5 @@
 <template>
   <div class="admin-scene">
-    <!-- Ambient Fluid Blobs -->
-    <div class="ambient-bg">
-      <div class="blob blob-1"></div>
-      <div class="blob blob-2"></div>
-      <div class="blob blob-3"></div>
-    </div>
-
     <div class="dashboard-container">
       <!-- Header Dashboard -->
       <header class="dash-header">
@@ -221,28 +214,9 @@ onMounted(() => {
   min-height: 100vh;
   width: 100%;
   padding-bottom: 80px;
-  background-color: #eef2f9;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
   box-sizing: border-box;
 }
-
-.ambient-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  filter: blur(80px);
-  pointer-events: none;
-}
-
-.blob {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.65;
-}
-.blob-1 { width: 450px; height: 450px; background: #93c5fd; top: 0%; left: 15%; }
-.blob-2 { width: 400px; height: 400px; background: #c4b5fd; top: 35%; right: 15%; }
-.blob-3 { width: 350px; height: 350px; background: #a5f3fc; bottom: 10%; left: 35%; }
 
 .dashboard-container {
   position: relative;

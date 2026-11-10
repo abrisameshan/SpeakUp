@@ -112,7 +112,7 @@
             </div>
             <div class="item-details">
               <span class="label">WhatsApp Support</span>
-              <span class="value">+62 812-3456-7890</span>
+              <span class="value">+62 822-6458-1310</span>
             </div>
             <span class="item-arrow">↗</span>
           </a>
@@ -127,7 +127,7 @@
             </div>
             <div class="item-details">
               <span class="label">Email Resmi</span>
-              <span class="value">admin.speakup@sekolah.sch.id</span>
+              <span class="value">admin.speakup@stembayo.sch.id</span>
             </div>
             <span class="item-arrow">↗</span>
           </a>
