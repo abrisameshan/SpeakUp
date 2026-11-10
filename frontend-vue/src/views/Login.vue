@@ -1,12 +1,5 @@
 <template>
   <div class="liquid-scene">
-    <!-- Latar Belakang Fluid Mesh (Bergerak lembut di belakang kaca) -->
-    <div class="ambient-bg">
-      <div class="blob blob-1"></div>
-      <div class="blob blob-2"></div>
-      <div class="blob blob-3"></div>
-    </div>
-
     <!-- Container Utama -->
     <div class="glass-container">
       <!-- Card Liquid Glass -->
@@ -157,59 +150,8 @@ const handleLogin = async () => {
   align-items: center;
   justify-content: center;
   padding: 24px 16px;
-  background-color: #eef2f9;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-  overflow: hidden;
   box-sizing: border-box;
-}
-
-.ambient-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  filter: blur(70px);
-}
-
-.blob {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.75;
-  animation: floatOrb 18s ease-in-out infinite alternate;
-}
-
-/* Palet warna pastel organik agar pembiasan kaca terlihat jernih (tidak norak) */
-.blob-1 {
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(circle, #93c5fd 0%, #bfdbfe 100%);
-  top: -8%;
-  left: 18%;
-}
-
-.blob-2 {
-  width: 380px;
-  height: 380px;
-  background: radial-gradient(circle, #c4b5fd 0%, #e0e7ff 100%);
-  bottom: -5%;
-  right: 18%;
-  animation-delay: -6s;
-}
-
-.blob-3 {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, #a5f3fc 0%, #bae6fd 100%);
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation-delay: -12s;
-}
-
-@keyframes floatOrb {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(35px, -25px) scale(1.08); }
-  100% { transform: translate(-25px, 30px) scale(0.95); }
 }
 
 /* 2. CONTAINER & LIQUID GLASS CARD */
