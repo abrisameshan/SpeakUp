@@ -17,12 +17,7 @@
         <!-- Header -->
         <div class="card-header">
           <div class="liquid-logo">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <line x1="19" y1="8" x2="19" y2="14"/>
-              <line x1="22" y1="11" x2="16" y2="11"/>
-            </svg>
+            <img src="../assets/logo.png" alt="SpeakUp Logo" class="logo-img" />
           </div>
           <h2>Daftar Akun Baru</h2>
           <p class="subtitle">Lengkapi data di bawah untuk memulai</p>
@@ -158,8 +153,9 @@ const handleRegister = async () => {
       throw new Error(data.message || 'Gagal mendaftar akun.')
     }
 
-    // Simpan token yang dikembalikan dari backend
+    // Simpan token & role yang dikembalikan dari backend
     localStorage.setItem('token', data.token)
+    localStorage.setItem('role', (data.user && data.user.role) || 'siswa')
 
     // Langsung arahkan ke homepage
     router.push('/')
@@ -301,17 +297,25 @@ const handleRegister = async () => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: 16px;
   margin-bottom: 14px;
-  color: #1e293b;
+  padding: 6px;
+  box-sizing: border-box;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.35));
   border: 1px solid rgba(255, 255, 255, 0.9);
   box-shadow:
     0 8px 16px -4px rgba(15, 23, 42, 0.08),
     inset 0 2px 2px rgba(255, 255, 255, 1),
     inset 0 -2px 4px rgba(148, 163, 184, 0.2);
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 h2 {

@@ -65,9 +65,9 @@ router.beforeEach((to, from, next) => {
       return next('/login')
     }
 
-    // 2. Cek apakah rolenya adalah admin atau guru
-    if (role !== 'admin' && role !== 'guru') {
-      alert('Akses ditolak. Anda tidak memiliki izin untuk mengakses halaman ini.')
+    // 2. Cek apakah rolenya adalah admin
+    if (role !== 'admin') {
+      alert('Akses ditolak. Halaman ini hanya dapat diakses oleh akun Admin.')
       return next('/') // Alihkan kembali ke beranda
     }
   }

@@ -17,9 +17,7 @@
         <!-- Header -->
         <div class="card-header">
           <div class="liquid-logo">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
-            </svg>
+            <img src="../assets/logo.png" alt="SpeakUp Logo" class="logo-img" />
           </div>
           <h2>Selamat Datang</h2>
           <p class="subtitle">Masuk untuk melanjutkan ke ruang kerja Anda</p>
@@ -282,17 +280,25 @@ const handleLogin = async () => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: 16px;
   margin-bottom: 14px;
-  color: #1e293b;
+  padding: 6px;
+  box-sizing: border-box;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.35));
   border: 1px solid rgba(255, 255, 255, 0.9);
   box-shadow:
     0 8px 16px -4px rgba(15, 23, 42, 0.08),
     inset 0 2px 2px rgba(255, 255, 255, 1),
     inset 0 -2px 4px rgba(148, 163, 184, 0.2);
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 h2 {
