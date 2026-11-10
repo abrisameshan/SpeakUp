@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Aspiration;
+use App\Models\AspirationUpvote;
 use Illuminate\Http\Request;
 
 class AspirationController extends Controller
@@ -19,6 +20,20 @@ class AspirationController extends Controller
 
         $aspirations = $query->paginate(10);
 
+        // Ambil daftar aspirasi yang sudah di-upvote oleh user (jika sedang login)
+        $user = auth('sanctum')->user();
+        $upvotedIds = [];
+        if ($user) {
+            $upvotedIds = AspirationUpvote::where('user_id', $user->id)
+                ->pluck('aspiration_id')
+                ->toArray();
+        }
+
+        $aspirations->getCollection()->transform(function ($item) use ($upvotedIds) {
+            $item->has_upvoted = in_array($item->id, $upvotedIds);
+            return $item;
+        });
+
         // Statistik ringkas untuk widget beranda
         $stats = [
             'total' => Aspiration::count(),
@@ -29,6 +44,7 @@ class AspirationController extends Controller
         return response()->json([
             'status' => 'success',
             'stats' => $stats,
+            'upvoted_ids' => $upvotedIds,
             'data' => $aspirations
         ]);
     }
@@ -51,15 +67,46 @@ class AspirationController extends Controller
         ], 201);
     }
 
-    // Upvote aspirasi
-    public function upvote($id)
+    // Upvote aspirasi (1 akun hanya bisa 1 kali per aspirasi)
+    public function upvote(Request $request, $id)
     {
+        $user = $request->user();
+        if (!$user) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Silakan login terlebih dahulu untuk memberikan dukungan.'
+            ], 401);
+        }
+
         $aspiration = Aspiration::findOrFail($id);
+
+        // Cek apakah akun ini sudah pernah upvote aspirasi ini
+        $alreadyUpvoted = AspirationUpvote::where('user_id', $user->id)
+            ->where('aspiration_id', $aspiration->id)
+            ->exists();
+
+        if ($alreadyUpvoted) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Anda sudah memberikan dukungan pada aspirasi ini.',
+                'already_upvoted' => true,
+                'upvotes_count' => $aspiration->upvotes_count
+            ], 422);
+        }
+
+        // Catat upvote
+        AspirationUpvote::create([
+            'user_id' => $user->id,
+            'aspiration_id' => $aspiration->id
+        ]);
+
         $aspiration->increment('upvotes_count');
 
         return response()->json([
             'status' => 'success',
-            'upvotes_count' => $aspiration->upvotes_count
+            'message' => 'Dukungan berhasil ditambahkan!',
+            'upvotes_count' => $aspiration->upvotes_count,
+            'has_upvoted' => true
         ]);
     }
 

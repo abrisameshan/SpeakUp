@@ -24,4 +24,9 @@ class Aspiration extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function upvotes()
+    {
+        return $this->hasMany(AspirationUpvote::class);
+    }
 }

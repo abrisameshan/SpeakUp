@@ -187,12 +187,17 @@ const form = reactive({
 const fetchAspirations = async () => {
   loadingFeed.value = true
   try {
+    const token = localStorage.getItem('token')
+    const headers = token ? { 'Authorization': `Bearer ${token}` } : {}
     const url = `${API_BASE_URL}/api/aspirations?category=${selectedCategory.value}`
-    const res = await fetch(url)
+    const res = await fetch(url, { headers })
     const json = await res.json()
 
     if (json.status === 'success') {
-      aspirations.value = json.data.data
+      aspirations.value = json.data.data.map(item => ({
+        ...item,
+        hasUpvoted: !!item.has_upvoted
+      }))
       stats.total = json.stats.total
       stats.diproses = json.stats.diproses
       stats.selesai = json.stats.selesai
@@ -251,6 +256,10 @@ const submitAspiration = async () => {
 }
 
 const upvote = async (item) => {
+  if (item.hasUpvoted) {
+    alert('Anda sudah memberikan dukungan pada aspirasi ini.')
+    return
+  }
   const token = localStorage.getItem('token')
   if (!token) {
     alert('Silakan login terlebih dahulu untuk memberikan dukungan!')
@@ -269,6 +278,11 @@ const upvote = async (item) => {
     if (res.ok) {
       item.upvotes_count = data.upvotes_count
       item.hasUpvoted = true
+    } else {
+      if (data.already_upvoted || res.status === 422) {
+        item.hasUpvoted = true
+      }
+      alert(data.message || 'Gagal memberikan dukungan.')
     }
   } catch (err) {
     console.error('Gagal upvote:', err)

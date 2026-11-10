@@ -335,6 +335,15 @@ const handleLogout = () => {
   -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
   overflow: hidden;
+  padding: 3px;
+  box-sizing: border-box;
+}
+
+.brand-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .brand-name {

@@ -71,8 +71,8 @@
               <p class="spotlight-desc">{{ topTrending.description }}</p>
             </div>
             <div class="spotlight-action">
-              <button class="upvote-btn-spotlight" @click="handleUpvote(topTrending)">
-                ▲ {{ topTrending.upvotes_count || 0 }} Dukung Isu Ini
+              <button class="upvote-btn-spotlight" :disabled="topTrending.hasUpvoted" @click="handleUpvote(topTrending)">
+                ▲ {{ topTrending.upvotes_count || 0 }} {{ topTrending.hasUpvoted ? 'Telah Didukung' : 'Dukung Isu Ini' }}
               </button>
             </div>
           </div>
@@ -131,6 +131,7 @@
               <!-- Tombol Upvote -->
               <button 
                 :class="['upvote-btn', { upvoted: item.hasUpvoted }]" 
+                :disabled="item.hasUpvoted"
                 @click="handleUpvote(item)"
               >
                 ▲ {{ item.upvotes_count || 0 }}
@@ -174,12 +175,14 @@ const categories = [
 
 const fetchAspirations = async () => {
   try {
-    const res = await fetch(`${API_BASE_URL}/api/aspirations?category=Semua`)
+    const token = localStorage.getItem('token')
+    const headers = token ? { 'Authorization': `Bearer ${token}` } : {}
+    const res = await fetch(`${API_BASE_URL}/api/aspirations?category=Semua`, { headers })
     const json = await res.json()
     if (json.status === 'success') {
       aspirations.value = json.data.data.map(item => ({
         ...item,
-        hasUpvoted: false
+        hasUpvoted: !!item.has_upvoted
       }))
     }
   } catch (err) {
@@ -224,6 +227,10 @@ const filteredAspirations = computed(() => {
 })
 
 const handleUpvote = async (item) => {
+  if (item.hasUpvoted) {
+    alert('Anda sudah memberikan dukungan pada aspirasi ini.')
+    return
+  }
   const token = localStorage.getItem('token')
   if (!token) {
     alert('Silakan login terlebih dahulu untuk memberikan dukungan!')
@@ -242,6 +249,11 @@ const handleUpvote = async (item) => {
     if (res.ok) {
       item.upvotes_count = data.upvotes_count
       item.hasUpvoted = true
+    } else {
+      if (data.already_upvoted || res.status === 422) {
+        item.hasUpvoted = true
+      }
+      alert(data.message || 'Gagal memberikan dukungan.')
     }
   } catch (err) {
     console.error('Gagal upvote:', err)
