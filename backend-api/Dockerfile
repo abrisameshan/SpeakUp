@@ -32,4 +32,4 @@ RUN chmod -R 777 storage bootstrap/cache
 ENV PORT=10000
 EXPOSE 10000
 
-CMD php artisan config:clear && php artisan storage:link && php artisan serve --host=0.0.0.0 --port=${PORT}
+CMD php artisan config:clear && php artisan migrate --force && php artisan storage:link && php artisan serve --host=0.0.0.0 --port=${PORT}
