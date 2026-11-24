@@ -34,7 +34,7 @@
         <div class="liquid-glass-box">
           <div class="box-header">
             <h3>Tulis Aspirasi Baru</h3>
-            <p>Aspirasi kamu akan dilihat dan didukung oleh komunitas.</p>
+            <p>Aspirasi kamu akan ditinjau dan diverifikasi oleh pihak guru/admin sebelum tampil di publik.</p>
           </div>
 
           <form @submit.prevent="submitAspiration" class="aspiration-form">
@@ -238,7 +238,7 @@ const submitAspiration = async () => {
 
     form.title = ''
     form.description = ''
-    postMessage.value = 'Aspirasi berhasil dikirim!'
+    postMessage.value = data.message || 'Aspirasi berhasil dikirim! Menunggu verifikasi dari admin/guru sebelum ditampilkan ke publik.'
     fetchAspirations()
   } catch (err) {
     isPostError.value = true

@@ -17,7 +17,13 @@ class Aspiration extends Model
         'status',
         'upvotes_count',
         'feedback',
-        'upvotes_count'
+        'is_published',
+        'published_at'
+    ];
+
+    protected $casts = [
+        'is_published' => 'boolean',
+        'published_at' => 'datetime',
     ];
 
     public function user()
@@ -28,5 +34,10 @@ class Aspiration extends Model
     public function upvotes()
     {
         return $this->hasMany(AspirationUpvote::class);
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('is_published', true);
     }
 }

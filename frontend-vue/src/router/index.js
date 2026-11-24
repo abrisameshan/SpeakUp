@@ -29,23 +29,23 @@ const routes = [
     path: '/admin',
     name: 'AdminDashboard',
     component: AdminDashboard,
-    meta: { requiresAdmin: true }
+    meta: { requiresAdminOrGuru: true }
   },
   {
-  path: '/riwayat',
-  name: 'MyAspirations',
-  component: MyAspirations
-},
-{
-  path: '/about',
-  name: 'About',
-  component: about
-},
-{
-  path: '/explore',
-  name: 'Explore',
-  component: Explore
-}
+    path: '/riwayat',
+    name: 'MyAspirations',
+    component: MyAspirations
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: about
+  },
+  {
+    path: '/explore',
+    name: 'Explore',
+    component: Explore
+  }
 ]
 
 const router = createRouter({
@@ -58,17 +58,15 @@ router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token')
   const role = localStorage.getItem('role')
 
-  if (to.meta.requiresAdmin) {
-    // 1. Cek apakah pengguna sudah login
+  if (to.meta.requiresAdminOrGuru) {
     if (!token) {
       alert('Silakan login terlebih dahulu.')
       return next('/login')
     }
 
-    // 2. Cek apakah rolenya adalah admin
-    if (role !== 'admin') {
-      alert('Akses ditolak. Halaman ini hanya dapat diakses oleh akun Admin.')
-      return next('/') // Alihkan kembali ke beranda
+    if (role !== 'admin' && role !== 'guru') {
+      alert('Akses ditolak. Halaman ini hanya dapat diakses oleh akun Guru atau Admin.')
+      return next('/')
     }
   }
 

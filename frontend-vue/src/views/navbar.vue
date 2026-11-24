@@ -30,7 +30,9 @@
         <router-link to="/riwayat" class="nav-item" active-class="active">
           MyAspirasi
         </router-link>
-        <router-link v-if="isLoggedIn && userRole === 'admin'" to="/admin" class="nav-item" active-class="active">Admin</router-link>
+        <router-link v-if="isLoggedIn && (userRole === 'admin' || userRole === 'guru')" to="/admin" class="nav-item" active-class="active">
+          Panel Kelola
+        </router-link>
         <router-link to="/about" class="nav-item" active-class="active">
           Tentang
         </router-link>
@@ -118,11 +120,11 @@
             <span>MyAspirasi</span>
           </router-link>
 
-          <router-link v-if="isLoggedIn && userRole === 'admin'" to="/admin" class="mobile-item" active-class="active" @click="mobileMenuOpen = false">
+          <router-link v-if="isLoggedIn && (userRole === 'admin' || userRole === 'guru')" to="/admin" class="mobile-item" active-class="active" @click="mobileMenuOpen = false">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             </svg>
-            <span>Admin</span>
+            <span>Panel Kelola</span>
           </router-link>
           <router-link to="/about" class="mobile-item" active-class="active" @click="mobileMenuOpen = false">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

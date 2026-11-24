@@ -6,11 +6,11 @@
       <header class="explore-header">
         <div class="badge-pill">
           <span class="pulse-indicator"></span>
-          <span>Suara Komunitas Terbuka</span>
+          <span>Suara Komunitas Terverifikasi</span>
         </div>
         <h1 class="page-title">Eksplorasi Aspirasi</h1>
         <p class="page-subtitle">
-          Temukan, cari, dan berikan dukungan pada isu-isu prioritas di lingkungan sekolah kita.
+          Temukan, cari, dan berikan dukungan pada isu-isu prioritas yang telah diverifikasi secara resmi.
         </p>
 
         <!-- Search Bar Liquid Glass -->

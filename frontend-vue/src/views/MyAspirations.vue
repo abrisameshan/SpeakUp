@@ -35,12 +35,21 @@
           <!-- Baris Atas Kartu -->
           <div class="card-top">
             <span class="category-tag">{{ item.category }}</span>
-            <div :class="['status-chip', item.status]">
+            <div class="status-group">
+              <span 
+                class="pub-pill" 
+                :class="item.is_published ? 'pub-yes' : 'pub-wait'"
+              >
+                <span class="pub-dot"></span>
+                <span>{{ item.is_published ? 'Dipublikasikan ke Publik' : 'Menunggu Verifikasi Guru/Admin' }}</span>
+              </span>
+              <div :class="['status-chip', item.status]">
               <span class="dot"></span>
               <span>{{ formatStatus(item.status) }}</span>
             </div>
           </div>
 
+            </div>
           <!-- Konten Aspirasi -->
           <h2 class="item-title">{{ item.title }}</h2>
           <p class="item-desc">{{ item.description }}</p>
@@ -235,6 +244,47 @@ onMounted(() => {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #3b82f6;
+}
+
+.status-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pub-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.pub-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.pub-yes {
+  background: rgba(16, 185, 129, 0.15);
+  color: #065f46;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.pub-yes .pub-dot {
+  background: #10b981;
+}
+
+.pub-wait {
+  background: rgba(245, 158, 11, 0.15);
+  color: #92400e;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+.pub-wait .pub-dot {
+  background: #f59e0b;
 }
 
 /* Status Chips */
